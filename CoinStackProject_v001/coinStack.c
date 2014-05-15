@@ -22,6 +22,8 @@ void coinMove(){}
 void coinDown(){}
 void coinStack(){}
 void coinBalanceCheck(){}
+void coinClear(){}
+// gameMissionCheck
 void gameOver(){}
 void gameClear(){}
 // program func
