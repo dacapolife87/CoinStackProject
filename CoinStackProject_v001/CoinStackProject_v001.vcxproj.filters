@@ -18,13 +18,5 @@
     <ClCompile Include="coinStack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mtg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mtg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
