@@ -92,12 +92,12 @@ void setWindowSize()
 void startMenu()
 {
 	int menuNum=0;
-	//startImage();
+	startImage();
 
 	printf("번호입력 : \n");
 	menuNum = selectMenu();
 	
-	// 영문자 입력시 무한루프......
+	// 영문자 입력시 무한루프......왜리럴까.....
 	while ( !((menuNum==1)|| (menuNum==2)) )
 	{
 		printf("재입력 : \n");
@@ -153,13 +153,14 @@ void startGame()
 	gameLevel = gameLevelSelect();
 	printf("after gamelevel select : %d",gameLevel);
 	gameSetting(gameLevel);
+	gameBackground();
 	
 }
 // game default setting
 int gameLevelSelect()
 {
 	int selectLevel=1;
-	//system("cls");
+	system("cls");
 	printf("1. Level 1\n");
 	printf("2. Level 2\n");
 	printf("3. Level 3\n");
@@ -202,7 +203,47 @@ void gameSetting(int level)
 	
 	return;
 }
-void gameBackground(){}
+void gameBackground()
+{
+	int i,j;
+	int x,y;
+	GOLD;
+	
+	y=2;
+
+	for(i=0;i<19;i++)
+	{
+		x=20;
+		gotoxy(x,y);
+		printf("▦");
+		for(j=0;j<20;j++)
+			printf("  ");
+		printf("▦");
+		printf("\n");
+		y++;
+	}
+	x=20;
+	gotoxy(x,y);
+	printf("▦");
+	for(i=0;i<20;i++)
+	{
+		if(i>7 && i<12)
+		{
+			GRAY;
+			printf("▩");
+		}
+		else
+		{
+			GOLD;
+			printf("▦");
+		}		
+	}
+	printf("▦");
+	printf("\n");
+	printf("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"); // 콘솔창 커서좌표 확인하기 위한 임시 숫자
+	
+	return;
+}
 void gameInfo(){}
 // game Func
 void coinMove(){}
