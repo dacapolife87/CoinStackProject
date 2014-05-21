@@ -66,7 +66,8 @@ void gameOver();
 void gameClear();
 // gameRankFileIO
 void showRank();
-void writeRank();
+void writeRank(int,char);
+void readRank();
 // program func
 void gotoxy(int,int);
 //<-------------- Declare Function ProtoType End-------------->
@@ -168,10 +169,10 @@ int selectMenu()
 // game start
 void startGame()
 {
-	int gameLevel=0;
+	int gameLevel=1;
 	
 	printf("startGameFunc gamelevel : %d\n",gameLevel);
-	gameLevel = gameLevelSelect();
+	//gameLevel = gameLevelSelect();
 	printf("after gamelevel select : %d",gameLevel);
 	stackGame(gameLevel);
 	return;
@@ -189,6 +190,7 @@ void stackGame(int gameLevel)
 	return;
 }
 // game default setting
+/*
 int gameLevelSelect()
 {
 	int selectLevel=1;
@@ -220,7 +222,7 @@ int gameLevelSelect()
 	}
 	
 	return selectLevel;
-}
+}*/
 int gameSetting(int level)
 {
 	double movingSpeed=BASESLEEPTIME;
@@ -343,7 +345,7 @@ void coinMove(int x,int y,int speed,int level)
 				gameCheck = coinBalanceCheck(balance,stackBalance,x);
 				if(gameCheck!=1)
 				{
-					gameOver();
+					gameOver(level);
 					return;
 				}
 				balance=(balance+stackBalance)/2;
@@ -387,13 +389,9 @@ int coinBalanceCheck(double balance,double stackBalance,int x)
 
 	if(balance<stackBalance-3.5)
 	{
-		//showStack(stackBalance);
-		//gameOver();
 		return 0;
 	}else if(balance>stackBalance+3.5)
 	{
-		//showStack(stackBalance);
-		//gameOver();
 		return 0;
 	}
 	return 1;
@@ -406,15 +404,18 @@ void coinClear(int x,int y)
 	return;
 }
 // gameMissionCheck
-void gameOver()
+void gameOver(int level)
 {
 	//int x,y;
+	char name[10];
 	system("cls");
 	//x=35;
 	//y=15;
 	gotoxy(35,15);
 	printf("GameOver\n");
 	Sleep(1000);
+	strcpy(name,"ȫ�浿");
+	writeRank(level,name);
 	startMenu();
 	return;
 }
@@ -469,7 +470,13 @@ void showRank()
 	
 	return;
 }
-void writeRank(){}
+void writeRank(int level,char name[10])
+{
+	printf("%d %s",level,name);
+	Sleep(2000);
+	return;
+}
+void readRank(){}
 // program func
 void gotoxy(int x,int y)
 {
