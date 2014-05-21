@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <conio.h>
+#include <string.h>
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //<--------------------- Define Start--------------------->
 // Define SleepTime 
@@ -63,6 +64,9 @@ void coinClear();
 // gameMissionCheck
 void gameOver();
 void gameClear();
+// gameRankFileIO
+void showRank();
+void writeRank();
 // program func
 void gotoxy(int,int);
 //<-------------- Declare Function ProtoType End-------------->
@@ -71,6 +75,13 @@ void gotoxy(int,int);
 double coinMovingSpeed = 0;
 //<-------------- Declare Global Variable End-------------->
 
+//<-------------- Declare Struct Start-------------->
+struct rankList{
+	int rank;
+	int level;
+	char name[10];
+};
+//<-------------- Declare Struct End-------------->
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -431,6 +442,9 @@ void gameClear(int level)
 	
 	return;
 }
+// GameRankFileIO
+void showRank(){}
+void writeRank(){}
 // program func
 void gotoxy(int x,int y)
 {
