@@ -1,0 +1,10 @@
+1 5 È«
+2 5 ±è
+3 4 ÀÌ
+4 4 ¹Ú
+5 1 Àå
+6 1 noName
+7 1 noName
+8 1 noName
+9 1 noName
+10 1 noName

@@ -67,7 +67,7 @@ void gameClear();
 // gameRankFileIO
 void showRank();
 void writeRank(int,char);
-void readRank();
+void checkRank(int);
 // program func
 void gotoxy(int,int);
 //<-------------- Declare Function ProtoType End-------------->
@@ -464,19 +464,66 @@ void showRank()
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
-
 	fclose(f);
-	
 	
 	return;
 }
+/*
 void writeRank(int level,char name[10])
 {
+	checkRank(level,name);
 	printf("%d %s",level,name);
 	Sleep(2000);
 	return;
+}*/
+void writeRank(int level,char name[10])
+{
+	struct rankList rank[10];
+	int i,j;
+	FILE *f;
+	int rankLevel=0;
+	int checkNum=0;
+	f=fopen("rank.txt","r");
+	for(i=0;i<10;i++){
+		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
+		//printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+		if(checkNum==0)
+		{
+			if(rank[i].level <level)
+			{
+				//printf("if inside\n");
+				rankLevel=i;
+				checkNum=1;
+			}
+		}
+	}
+	
+	printf("------------------ %d %d\n",rankLevel,level);
+	for(j=9;j>rankLevel;j--)
+	{
+		rank[j].level = rank[j-1].level;
+		strcpy(rank[j].name,rank[j-1].name);
+	} 
+	rank[rankLevel].level = level;
+	strcpy(rank[rankLevel].name , name);
+	fclose(f);
+	/*
+	for(i=0;i<10;i++){
+		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+	}
+	*/
+	
+	///////////////////// ·©Å© ÀçÁ¤·Ä
+	f=fopen("rank.txt","w");
+	for(i=0;i<10;i++)
+	{
+		fprintf(f, "%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+	}
+	
+	fclose(f);
+ 
+	Sleep(100000);
 }
-void readRank(){}
 // program func
 void gotoxy(int x,int y)
 {
