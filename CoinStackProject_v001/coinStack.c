@@ -67,8 +67,8 @@ void gameClear();
 void showNextLevel(int);
 // gameRankFileIO
 void showRank();
-void writeRank(int,char);
-void checkRank(int);
+void writeRank(int);
+char* inputNameRank();
 // program func
 void gotoxy(int,int);
 //<-------------- Declare Function ProtoType End-------------->
@@ -171,10 +171,6 @@ int selectMenu()
 void startGame()
 {
 	int gameLevel=1;
-	
-	printf("startGameFunc gamelevel : %d\n",gameLevel);
-	//gameLevel = gameLevelSelect();
-	printf("after gamelevel select : %d",gameLevel);
 	stackGame(gameLevel);
 	return;
 }
@@ -242,7 +238,6 @@ void gameBackground()
 	}
 	printf("▦");
 	printf("\n");
-	printf("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"); // 콘솔창 커서좌표 확인하기 위한 임시 숫자
 	
 	return;
 }
@@ -255,7 +250,7 @@ void gameInfo(int level)
 	printf("Level %d\n",level);
 
 	gotoxy(65,12);
-	printf("Difficulty hard");
+	printf("--------");
 
 	return;
 }
@@ -383,7 +378,7 @@ void gameOver(int level)
 	printf("GameOver\n");
 	Sleep(1000);
 	strcpy(name,"홍길동");
-	writeRank(level,name);
+	writeRank(level);
 	startMenu();
 	return;
 }
@@ -437,7 +432,7 @@ void showRank()
 	struct rankList rank[10];
 	int i;
 	FILE *f;
-
+	char *name;
 	system("cls");
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
@@ -446,23 +441,19 @@ void showRank()
 	}
 	fclose(f);
 	
+
+	name = inputNameRank();
+	printf("%s",name);
 	return;
 }
-/*
-void writeRank(int level,char name[10])
-{
-	checkRank(level,name);
-	printf("%d %s",level,name);
-	Sleep(2000);
-	return;
-}*/
-void writeRank(int level,char name[10])
+void writeRank(int level)
 {
 	struct rankList rank[10];
 	int i,j;
 	FILE *f;
 	int rankLevel=0;
 	int checkNum=0;
+	char* name;
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
@@ -484,14 +475,19 @@ void writeRank(int level,char name[10])
 		rank[j].level = rank[j-1].level;
 		strcpy(rank[j].name,rank[j-1].name);
 	} 
-	rank[rankLevel].level = level;
-	strcpy(rank[rankLevel].name , name);
-	fclose(f);
-	/*
+	//////////
 	for(i=0;i<10;i++){
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
-	*/
+	name=inputNameRank();
+	rank[rankLevel].level = level;
+	strcpy(rank[rankLevel].name , name);
+	fclose(f);
+	/////////
+	for(i=0;i<10;i++){
+		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+	}
+	
 	
 	///////////////////// 랭크 재정렬
 	f=fopen("rank.txt","w");
@@ -503,6 +499,15 @@ void writeRank(int level,char name[10])
 	fclose(f);
  
 	Sleep(100000);
+}
+char* inputNameRank()
+{
+	static char name[10];
+	//strcpy(name,"test");
+	printf("이름을 입력하세요 : \n");
+	scanf("%s",name);
+	printf("inputNameRank Func  %s\n",name);
+	return name;
 }
 // program func
 void gotoxy(int x,int y)
