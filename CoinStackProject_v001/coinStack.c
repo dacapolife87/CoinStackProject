@@ -125,6 +125,13 @@ void startMenu()
 		startGame();
 		return;
 	}
+	if(menuNum == 2)
+	{
+		showRank();
+		Sleep(2000);
+		startMenu();
+		return;
+	}
 	
 	return;
 }
@@ -144,7 +151,8 @@ void startImage()
 	printf("                                 ####      #     #    #    ###    #   #\n");
 	printf("\n");
 	printf("                             1. 게임시작    \n");
-	printf("                             2. 게임종료   \n");
+	printf("                             2. 순위보기   \n");
+	printf("                             3. 게임종료   \n");
 	printf("                          원하시는 메뉴를 선택하세요.   \n");
 	
 	return;
@@ -443,7 +451,24 @@ void gameClear(int level)
 	return;
 }
 // GameRankFileIO
-void showRank(){}
+void showRank()
+{
+	struct rankList rank[10];
+	int i;
+	FILE *f;
+
+	system("cls");
+	f=fopen("rank.txt","r");
+	for(i=0;i<10;i++){
+		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
+		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+	}
+
+	fclose(f);
+	
+	
+	return;
+}
 void writeRank(){}
 // program func
 void gotoxy(int x,int y)
