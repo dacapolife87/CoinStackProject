@@ -64,6 +64,7 @@ void coinClear();
 // gameMissionCheck
 void gameOver();
 void gameClear();
+void showNextLevel(int);
 // gameRankFileIO
 void showRank();
 void writeRank(int,char);
@@ -190,39 +191,6 @@ void stackGame(int gameLevel)
 	return;
 }
 // game default setting
-/*
-int gameLevelSelect()
-{
-	int selectLevel=1;
-	system("cls");
-	printf("1. Level 1\n");
-	printf("2. Level 2\n");
-	printf("3. Level 3\n");
-	printf("4. Level 4\n");
-	printf("5. Level 5\n");
-	
-	scanf("%d",&selectLevel);
-
-	switch (selectLevel)
-	{
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	default:
-		selectLevel =1;
-		printf("범위내 숫자 아님 기본값 1 로 지정 : %d \n",selectLevel);
-		break;
-	}
-	
-	return selectLevel;
-}*/
 int gameSetting(int level)
 {
 	double movingSpeed=BASESLEEPTIME;
@@ -430,7 +398,11 @@ void gameClear(int level)
 	printf("GameClear\n");
 	Sleep(1000);
 	level++;
-	system("cls");
+	
+	showNextLevel(level);
+
+	stackGame(level);
+	/*
 	do
 	{
 		printf("다음 레벨로 넘어가시겠습니까? (Y/N)\n");
@@ -447,8 +419,16 @@ void gameClear(int level)
 			break;
 		}
 		system("cls");
-	} while (1);
+	} while (1);*/
 	
+	return;
+}
+void showNextLevel(int level)
+{
+	system("cls");
+	gotoxy(35,15);
+	printf("Next Level : %d\n",level);
+	Sleep(1000);
 	return;
 }
 // GameRankFileIO
