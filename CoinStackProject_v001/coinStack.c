@@ -48,16 +48,17 @@ void startImage();
 int selectMenu();
 // game start
 void startGame();
+void stackGame(int);
 // game default setting
 int gameLevelSelect();
-void gameSetting(int);
+int gameSetting(int);
 void gameBackground();
 void gameInfo();
 // game Func
 void coinMove();
 void coinDown();
 void coinStack();
-void coinBalanceCheck();
+int coinBalanceCheck();
 void coinClear();
 // gameMissionCheck
 void gameOver();
@@ -152,9 +153,20 @@ void startGame()
 	printf("startGameFunc gamelevel : %d\n",gameLevel);
 	gameLevel = gameLevelSelect();
 	printf("after gamelevel select : %d",gameLevel);
-	gameSetting(gameLevel);
+	stackGame(gameLevel);
+	return;
+}
+void stackGame(int gameLevel)
+{
+	int x=23;
+	int y=1;
+	int speed=100;
+	system("cls");
+	speed=gameSetting(gameLevel);
 	gameBackground();
-	
+	gameInfo(gameLevel);
+	coinMove(x,y,speed,gameLevel);
+	return;
 }
 // game default setting
 int gameLevelSelect()
@@ -189,7 +201,7 @@ int gameLevelSelect()
 	
 	return selectLevel;
 }
-void gameSetting(int level)
+int gameSetting(int level)
 {
 	double movingSpeed=BASESLEEPTIME;
 	int i;
@@ -201,7 +213,7 @@ void gameSetting(int level)
 
 	coinMovingSpeed = movingSpeed;
 	
-	return;
+	return coinMovingSpeed;
 }
 void gameBackground()
 {
@@ -244,16 +256,169 @@ void gameBackground()
 	
 	return;
 }
-void gameInfo(){}
+void gameInfo(int level)
+{
+	gotoxy(3,10);
+	printf("CoinStack");
+
+	gotoxy(65,10);
+	printf("Level %d\n",level);
+
+	gotoxy(65,12);
+	printf("Difficulty hard");
+
+	return;
+}
+
 // game Func
-void coinMove(){}
-void coinDown(){}
-void coinStack(){}
-void coinBalanceCheck(){}
-void coinClear(){}
+void coinMove(int x,int y,int speed,int level)
+{
+	int rightmove = 1;
+	int leftmove = 0;
+	int downline = 0;
+	int dropheight =20;
+	int gameCheck=1;
+	double balance=41.5;
+	double stackBalance=41.5;
+	char key;
+	YELLOW;
+	while(1){
+		if(rightmove==1)
+		{
+			gotoxy(x,y);
+			printf("▥▥▥▥");
+			Sleep(speed);
+			x++;
+			if(x==53)
+			{
+				rightmove=0;
+				leftmove=1;
+			}
+			
+		}
+		if(leftmove==1)
+		{
+			gotoxy(x,y);
+			printf("▥▥▥▥");
+			Sleep(speed);
+			x--;
+			if(x==23)
+			{
+				leftmove=0;
+				rightmove=1;
+			}
+		}
+		if(kbhit())	
+		{
+			key=getch();
+			if(key=='d')
+			{
+				coinClear((x-8),y);
+				coinDown(x,dropheight);
+		
+				leftmove=0;
+				rightmove=1;
+
+				// checkBalanceFunc
+				gameCheck = coinBalanceCheck(balance,stackBalance,x);
+				if(gameCheck!=1)
+				{
+					gameOver();
+					return;
+				}
+				balance=(balance+stackBalance)/2;
+
+				coinStack(x,dropheight);
+			
+				dropheight--;
+				x=23;
+
+			}
+		}
+		if(dropheight==15)
+		{
+			gameClear(level);
+			return;
+		}
+	}
+}
+void coinDown(int x,int dropheight)
+{
+	int i;
+	for(i=1;i<=dropheight;i++)
+	{
+		coinStack(x,i);
+		coinClear(x,i-1);
+		Sleep(DROPTIME);
+	}
+	return;
+}
+void coinStack(int x,int dropheight)
+{
+	gotoxy(x,dropheight);
+	printf("▥▥▥▥");
+
+	return;
+}
+int coinBalanceCheck(double balance,double stackBalance,int x)
+{
+
+	stackBalance=(float)x+3.5;
+
+	if(balance<stackBalance-3.5)
+	{
+		//showStack(stackBalance);
+		//gameOver();
+		return 0;
+	}else if(balance>stackBalance+3.5)
+	{
+		//showStack(stackBalance);
+		//gameOver();
+		return 0;
+	}
+	return 1;
+}
+void coinClear(int x,int y)
+{
+	gotoxy(x,y);
+	printf("       ");
+
+	return;
+}
 // gameMissionCheck
 void gameOver(){}
-void gameClear(){}
+void gameClear(int level)
+{
+	int x,y;
+	char yes;
+	system("cls");
+	x=35;
+	y=15;
+	gotoxy(x,y);
+	printf("GameClear\n");
+	Sleep(1000);
+	level++;
+	system("cls");
+	do
+	{
+		printf("다음 레벨로 넘어가시겠습니까? (Y/N)\n");
+		scanf("%c",&yes);
+		switch (yes)
+		{
+		case 'Y':case'y':
+			stackGame(level);
+			return;
+		case 'N':case'n':
+			startMenu();
+			return;
+		default:
+			break;
+		}
+		system("cls");
+	} while (1);
+	
+	return;
+}
 // program func
 void gotoxy(int x,int y)
 {
