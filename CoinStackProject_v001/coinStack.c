@@ -93,6 +93,8 @@ void setWindowSize()
 void startMenu()
 {
 	int menuNum=0;
+	system("cls");
+
 	startImage();
 
 	printf("번호입력 : \n");
@@ -139,7 +141,6 @@ void startImage()
 int selectMenu()
 {
 	int selectMenuNum = '0';
-
 	scanf("%d", &selectMenuNum);
 	printf("selectNum %d\n",selectMenuNum);
 
@@ -149,7 +150,7 @@ int selectMenu()
 void startGame()
 {
 	int gameLevel=0;
-	system("cls");
+	
 	printf("startGameFunc gamelevel : %d\n",gameLevel);
 	gameLevel = gameLevelSelect();
 	printf("after gamelevel select : %d",gameLevel);
@@ -386,7 +387,18 @@ void coinClear(int x,int y)
 	return;
 }
 // gameMissionCheck
-void gameOver(){}
+void gameOver()
+{
+	//int x,y;
+	system("cls");
+	//x=35;
+	//y=15;
+	gotoxy(35,15);
+	printf("GameOver\n");
+	Sleep(1000);
+	startMenu();
+	return;
+}
 void gameClear(int level)
 {
 	int x,y;
