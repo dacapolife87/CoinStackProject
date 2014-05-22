@@ -10,6 +10,8 @@
 #include <Windows.h>
 #include <conio.h>
 #include <string.h>
+//#include <unistd.h>
+#include <io.h>
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //<--------------------- Define Start--------------------->
 // Define SleepTime 
@@ -433,17 +435,36 @@ void showRank()
 	int i;
 	FILE *f;
 	char *name;
+	char *fileName = "./rank.txt";
 	system("cls");
+	
+	// 파일 존재 확인하여 존재하지 않으면 기본값 생성
+	if(0!=access(fileName,0))
+	{
+		
+		f=fopen("rank.txt","w");
+		for(i=0;i<10;i++)
+		{
+			rank[i].rank = i+1;
+			rank[i].level = 0;
+			strcpy(rank[i].name,"noRank");
+		}
+		for(i=0;i<10;i++)
+		{
+			fprintf(f, "%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+		}
+		fclose(f);
+	}
+	
+	// 파일을 열어 순위를 표시
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
 	fclose(f);
-	
-
-	name = inputNameRank();
-	printf("%s",name);
+	//name = inputNameRank();
+	//printf("%s",name);
 	return;
 }
 void writeRank(int level)
