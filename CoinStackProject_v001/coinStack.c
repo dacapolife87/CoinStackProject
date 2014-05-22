@@ -48,7 +48,7 @@ void setWindowSize();
 // main menu
 void startMenu();
 void startImage();
-int selectMenu();
+char selectMenu();
 // game start
 void startGame();
 void stackGame(int);
@@ -69,6 +69,7 @@ void gameClear();
 void showNextLevel(int);
 // gameRankFileIO
 void showRank();
+struct rankList returnBestPlayer();
 void writeRank(int);
 char* inputNameRank();
 // program func
@@ -77,6 +78,7 @@ void gotoxy(int,int);
 
 //<-------------- Declare Global Variable Start-------------->
 double coinMovingSpeed = 0;
+int bestPlayer =0;
 //<-------------- Declare Global Variable End-------------->
 
 //<-------------- Declare Struct Start-------------->
@@ -100,7 +102,7 @@ void main(void)
 // program setting
 void setWindowSize()
 {
-	system("mode con:lines=30 cols=100");
+	system("mode con:lines=30 cols=90");
 
 	return;
 }
@@ -108,13 +110,45 @@ void setWindowSize()
 void startMenu()
 {
 	int menuNum=0;
+	char key;
+	/*
+	\key=getch();
+			if(key=='d')*/
 	system("cls");
-
+	setWindowSize();
 	startImage();
 
-	printf("번호입력 : \n");
-	menuNum = selectMenu();
 	
+	//key=getch();
+	//if(key==1)
+
+	
+	while(1)
+	{
+		Sleep(200);
+		//key = selectMenu();
+		if(kbhit())
+		{
+			key=getch();
+			if(key=='1'||key=='2')
+				break;
+			//printf("test1111");
+			//break;
+		}
+	}
+	if(key=='1')
+	{
+		startGame();
+		return;
+	}
+	else if (key=='2')
+	{
+		showRank();
+		Sleep(2000);
+		startMenu();
+		return;
+	}
+	/*
 	// 영문자 입력시 무한루프......왜리럴까.....
 	while ( !((menuNum==1)|| (menuNum==2)) )
 	{
@@ -136,7 +170,7 @@ void startMenu()
 		startMenu();
 		return;
 	}
-	
+	*/
 	return;
 }
 void startImage()
@@ -161,13 +195,14 @@ void startImage()
 	
 	return;
 }
-int selectMenu()
+char selectMenu()
 {
 	int selectMenuNum = '0';
-	scanf("%d", &selectMenuNum);
-	printf("selectNum %d\n",selectMenuNum);
-
-	return selectMenuNum;
+	char key;
+	//scanf("%d", &selectMenuNum);
+	//printf("selectNum %d\n",selectMenuNum);
+	key=getch();
+	return key;
 }
 // game start
 void startGame()
@@ -245,14 +280,28 @@ void gameBackground()
 }
 void gameInfo(int level)
 {
+	struct rankList rank1;
+     rank1=returnBestPlayer();
+
 	gotoxy(3,10);
 	printf("CoinStack");
-
-	gotoxy(65,10);
+	gotoxy(3,12);
 	printf("Level %d\n",level);
 
+	gotoxy(65,10);
+	printf("BestPlayer!!!\n");
 	gotoxy(65,12);
-	printf("--------");
+	printf("Level : %d\n",rank1.level);
+	gotoxy(65,14);
+	printf("Name : %s\n",rank1.name);
+	bestPlayer=rank1.level;
+	if(bestPlayer<level)
+	{
+		gotoxy(65,12);
+		printf("Level : %d\n",level);
+		gotoxy(65,14);
+		printf("You are the Best!!!\n");
+	}
 
 	return;
 }
@@ -379,7 +428,7 @@ void gameOver(int level)
 	gotoxy(35,15);
 	printf("GameOver\n");
 	Sleep(1000);
-	strcpy(name,"홍길동");
+	//strcpy(name,"홍길동");
 	writeRank(level);
 	startMenu();
 	return;
@@ -395,6 +444,7 @@ void gameClear(int level)
 	printf("GameClear\n");
 	Sleep(1000);
 	level++;
+	
 	
 	showNextLevel(level);
 
@@ -467,6 +517,18 @@ void showRank()
 	//printf("%s",name);
 	return;
 }
+struct rankList returnBestPlayer()
+{
+	struct rankList rank[10];
+	//struct rankList rank[10];
+	FILE *f;
+
+	f=fopen("rank.txt","r");
+	fscanf(f,"%d %d %s",&rank[0].rank,&rank[0].level,&rank[0].name);
+	fclose(f);
+
+	return rank[0];
+}
 void writeRank(int level)
 {
 	struct rankList rank[10];
@@ -475,15 +537,16 @@ void writeRank(int level)
 	int rankLevel=0;
 	int checkNum=0;
 	char* name;
+	// 기존 랭킹 파일 열기
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
-		//printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 		if(checkNum==0)
 		{
-			if(rank[i].level <level)
+			if(rank[i].level <level) // 기존레벨보다 현재 위치가 높은지 확인
 			{
-				//printf("if inside\n");
+				//printf("if inside\n"); // 기존레벨보다 높은것이 있으면 그 위치 체크
 				rankLevel=i;
 				checkNum=1;
 			}
@@ -491,12 +554,14 @@ void writeRank(int level)
 	}
 	
 	printf("------------------ %d %d\n",rankLevel,level);
+	// 뒤에서부터 확인된 랭크까지 1단계씩 내림
 	for(j=9;j>rankLevel;j--)
 	{
 		rank[j].level = rank[j-1].level;
 		strcpy(rank[j].name,rank[j-1].name);
 	} 
 	//////////
+	// 순위변경된 랭크 출력
 	for(i=0;i<10;i++){
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
@@ -519,7 +584,7 @@ void writeRank(int level)
 	
 	fclose(f);
  
-	Sleep(100000);
+	//Sleep(100000);
 }
 char* inputNameRank()
 {
