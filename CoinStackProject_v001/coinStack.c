@@ -10,7 +10,6 @@
 #include <Windows.h>
 #include <conio.h>
 #include <string.h>
-//#include <unistd.h>
 #include <io.h>
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //<--------------------- Define Start--------------------->
@@ -53,7 +52,7 @@ char selectMenu();
 void startGame();
 void stackGame(int);
 // game default setting
-int gameLevelSelect();
+//int gameLevelSelect();
 int gameSetting(int);
 void gameBackground();
 void gameInfo();
