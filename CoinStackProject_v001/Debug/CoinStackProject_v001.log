@@ -1,47 +1,6 @@
-﻿Build started 2014-05-26 오전 11:33:18.
+﻿Build started 2014-05-26 오전 11:54:44.
      1>Project "C:\Users\dacapolifeNotebook\Documents\Visual Studio 2012\Projects\CoinStackProject_v001\CoinStackProject_v001\CoinStackProject_v001.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt coinStack.c
-         coinStack.c
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(118): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : see declaration of 'kbhit'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(120): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : see declaration of 'getch'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(137): warning C4550: expression evaluates to a function which is missing an argument list
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(206): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(317): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(133) : see declaration of 'kbhit'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(319): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\conio.h(131) : see declaration of 'getch'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(398): warning C4101: 'name' : unreferenced local variable
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(440): warning C4996: 'access': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _access. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\io.h(302) : see declaration of 'access'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(442): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(447): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(457): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(459): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(435): warning C4101: 'name' : unreferenced local variable
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(471): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(472): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(486): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(488): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(237) : see declaration of 'fscanf'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(507): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(517): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(529): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-     1>c:\users\dacapolifenotebook\documents\visual studio 2012\projects\coinstackproject_v001\coinstackproject_v001\coinstack.c(543): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(290) : see declaration of 'scanf'
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dacapolifeNotebook\Documents\Visual Studio 2012\Projects\CoinStackProject_v001\Debug\CoinStackProject_v001.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\dacapolifeNotebook\Documents\Visual Studio 2012\Projects\CoinStackProject_v001\Debug\CoinStackProject_v001.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dacapolifeNotebook\Documents\Visual Studio 2012\Projects\CoinStackProject_v001\Debug\CoinStackProject_v001.lib" /MACHINE:X86 Debug\CoinStackProject_v001.res
          Debug\coinStack.obj
          CoinStackProject_v001.vcxproj -> C:\Users\dacapolifeNotebook\Documents\Visual Studio 2012\Projects\CoinStackProject_v001\Debug\CoinStackProject_v001.exe
@@ -49,4 +8,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.48
+Time Elapsed 00:00:00.85
