@@ -521,7 +521,7 @@ void writeRank(int level)
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
 	
-	///////////////////// ·©Å© ÀçÁ¤·Ä
+	//////////////// ·©Å© ÀçÁ¤·Ä
 	f=fopen("rank.txt","w");
 	for(i=0;i<10;i++)
 	{
