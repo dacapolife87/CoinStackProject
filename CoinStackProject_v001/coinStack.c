@@ -129,7 +129,7 @@ void startMenu()
 		if(kbhit())
 		{
 			key=getch();
-			if(key=='1'||key=='2')
+			if(key=='1'||key=='2'||key=='3')
 				break;
 			//printf("test1111");
 			//break;
@@ -146,7 +146,8 @@ void startMenu()
 		Sleep(2000);
 		startMenu();
 		return;
-	}
+	}else if(key=='3')
+		exit;
 	/*
 	// 영문자 입력시 무한루프......왜리럴까.....
 	while ( !((menuNum==1)|| (menuNum==2)) )
@@ -175,22 +176,24 @@ void startMenu()
 void startImage()
 {
 	ORIGINAL;
-	printf("   ###      ####     #####    #     #\n");
-	printf("  #   #    #    #      #      ##    #\n");
-	printf("  #        #    #      #      # ### #\n");
-	printf("  #   #    #    #      #      #    ##\n");
-	printf("   ###	    ####     #####    #     #\n");
 	printf("\n");
-	printf("                                 ####   #######    #       ###    #   #\n");
-	printf("                                 #         #      #  #    #   #   #  #\n");
-	printf("                                 ####      #     ######   #       ###\n");
-	printf("                                    #      #     #    #   #   #   #  #\n");
-	printf("                                 ####      #     #    #    ###    #   #\n");
 	printf("\n");
-	printf("                             1. 게임시작    \n");
-	printf("                             2. 순위보기   \n");
-	printf("                             3. 게임종료   \n");
-	printf("                          원하시는 메뉴를 선택하세요.   \n");
+	printf("       ###      ####     #####    #     #\n");
+	printf("      #   #    #    #      #      ##    #\n");
+	printf("      #        #    #      #      # ### #\n");
+	printf("      #   #    #    #      #      #    ##\n");
+	printf("       ###      ####     #####    #     #\n");
+	printf("\n");
+	printf("       	                             ####   #######    #       ###    #   #\n");
+	printf("               	                     #         #      #  #    #   #   #  #\n");
+	printf("                      	             ####      #     ######   #       ###\n");
+	printf("                            	        #      #     #    #   #   #   #  #\n");
+	printf("                                     ####      #     #    #    ###    #   #\n");
+	printf("\n");
+	printf("	                                 1. 게임시작    \n");
+	printf("        	                         2. 순위보기   \n");
+	printf("                	                 3. 게임종료   \n");
+	printf("                        	      원하시는 메뉴를 선택하세요.   \n");
 	
 	return;
 }
@@ -285,7 +288,9 @@ void gameInfo(int level)
 	gotoxy(3,10);
 	printf("CoinStack");
 	gotoxy(3,12);
-	printf("Level %d\n",level);
+	printf("Level %d\n",level);	
+	gotoxy(3,14);
+	printf("Down ↓ Key : d\n");
 
 	gotoxy(65,10);
 	printf("BestPlayer!!!\n");
