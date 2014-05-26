@@ -457,7 +457,7 @@ void showRank()
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
-		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+		printf("Rank : %2d Lvl : %d Name : %s\n",rank[i].rank,rank[i].level,rank[i].name);
 	}
 	fclose(f);
 	
@@ -486,7 +486,7 @@ void writeRank(int level)
 	f=fopen("rank.txt","r");
 	for(i=0;i<10;i++){
 		fscanf(f,"%d %d %s",&rank[i].rank,&rank[i].level,&rank[i].name);
-		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
+		//printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 		if(checkNum==0)
 		{
 			if(rank[i].level <level) // 기존레벨보다 현재 위치가 높은지 확인
@@ -497,7 +497,7 @@ void writeRank(int level)
 		}
 	}
 	fclose(f);
-	printf("------------------ %d %d\n",rankLevel,level);
+//	printf("------------------ %d %d\n",rankLevel,level);
 	// 뒤에서부터 확인된 랭크까지 1단계씩 내림
 	if(rankLevel<10)
 	{
@@ -508,18 +508,20 @@ void writeRank(int level)
 		}
 
 		// 순위변경된 랭크 출력
+		/*
 		for(i=0;i<10;i++)
 		{
 			printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
 		}
+		*/
 		name=inputNameRank();
 		rank[rankLevel].level = level;
 		strcpy(rank[rankLevel].name , name);
 	}
-	
+	/*
 	for(i=0;i<10;i++){
 		printf("%d %d %s\n",rank[i].rank,rank[i].level,rank[i].name);
-	}
+	}*/
 	
 	//////////////// 랭크 재정렬
 	f=fopen("rank.txt","w");
@@ -536,8 +538,8 @@ char* inputNameRank()
 {
 	static char name[10];
 	printf("이름을 입력하세요 : \n");
-	scanf("%s",name);
-	printf("inputNameRank Func  %s\n",name);
+	scanf("%s",name);\
+	//printf("inputNameRank Func  %s\n",name);
 	return name;
 }
 // program func
